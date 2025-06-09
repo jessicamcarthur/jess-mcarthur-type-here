@@ -55,14 +55,31 @@ for (let i = 1; i <= numImages; i++) {
   woodImages.push(img);
 }
 
-const blockWidth = 250;
+const blockWidth = 300;
 const blockHeight = 130;
 const blocks = [];
 let blocksCreated = false;
 
-const floor = Bodies.rectangle(window.innerWidth / 2, window.innerHeight + 50, window.innerWidth, 100, { isStatic: true });
-const leftWall = Bodies.rectangle(-50, window.innerHeight / 2, 100, window.innerHeight * 2, { isStatic: true });
-const rightWall = Bodies.rectangle(window.innerWidth + 50, window.innerHeight / 2, 100, window.innerHeight * 2, { isStatic: true });
+const floor = Bodies.rectangle(window.innerWidth / 2, window.innerHeight + 50, window.innerWidth, 100,
+  {
+    isStatic: true,
+    render: {
+      fillStyle: '#f0f0f0'
+    }
+  });
+const leftWall = Bodies.rectangle( 0, window.innerHeight / 2, 10, window.innerHeight * 2, {
+  isStatic: true,
+  render: {
+    fillStyle: '#f0f0f0'
+  }
+});
+
+const rightWall = Bodies.rectangle( window.innerWidth +2, window.innerHeight / 2, 1, window.innerHeight * 2, {
+  isStatic: true,
+  render: {
+    fillStyle: '#f0f0f0'
+  }
+});
 
 World.add(world, [floor, leftWall, rightWall]);
 
@@ -71,7 +88,7 @@ window.addEventListener('mousemove', () => {
   if (blocksCreated) return;
   blocksCreated = true;
 
-const blockCount = 5;
+  const blockCount = 5;
   for (let i = 0; i < blockCount; i++) {
     const block = Bodies.rectangle(
       Math.random() * (window.innerWidth - blockWidth),
